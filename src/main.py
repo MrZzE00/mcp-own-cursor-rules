@@ -9,8 +9,15 @@ mcp = FastMCP("Cursor Rules")
 
 # Define the path to the rules directory
 RULES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "own-cursor-rules", "rules"))
+FALLBACK_RULES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "fallback_rules"))
+
+# Check if the primary rules directory exists, if not use fallback
 if not os.path.exists(RULES_DIR):
-    raise FileNotFoundError(f"Rules directory not found at {RULES_DIR}")
+    if not os.path.exists(FALLBACK_RULES_DIR):
+        os.makedirs(FALLBACK_RULES_DIR, exist_ok=True)
+    RULES_DIR = FALLBACK_RULES_DIR
+    print(f"Warning: Primary rules directory not found. Using fallback directory: {FALLBACK_RULES_DIR}")
+    print("Note: To get full access to rules, you need access to the private repository.")
 
 # Define resource paths
 RULES_TYPES = [
@@ -34,10 +41,29 @@ def read_rules_file(rule_type: str) -> Dict[str, Any]:
     """Read a rules JSON file and return its contents."""
     file_path = os.path.join(RULES_DIR, f"{rule_type}_rules.json")
     if not os.path.exists(file_path):
-        raise FileNotFoundError(f"Rules file not found: {file_path}")
+        # Create a basic structure if file doesn't exist
+        fallback_data = {
+            "name": f"{rule_type.capitalize()} Rules",
+            "description": f"Rules for {rule_type}. Note: Full access requires the private repository.",
+            "rules": []
+        }
+        
+        # If using fallback directory, write the basic structure
+        if RULES_DIR == FALLBACK_RULES_DIR:
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(fallback_data, f, indent=2)
+        
+        return fallback_data
     
-    with open(file_path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        return {
+            "name": f"{rule_type.capitalize()} Rules",
+            "description": "Error reading rules file.",
+            "rules": []
+        }
 
 # Helper function to read template file
 def read_template_file(template_name: str) -> str:

@@ -6,6 +6,7 @@ This guide explains how to install and use the MCP Own Cursor Rules server with 
 
 - Claude Desktop application
 - Python 3.10 or higher
+- Access to the private GitHub repository `MrZzE00/own-cursor-rules` (optional, but required for full functionality)
 
 ## Configuration File Location
 
@@ -21,7 +22,7 @@ The Claude Desktop configuration file is located at:
 1. Open Claude Desktop
 2. Type the following command:
    ```
-   Please install this MCP server from GitHub: https://github.com/MrZzE00/own-cursor-rules
+   Please install this MCP server from GitHub: https://github.com/MrZzE00/mcp-own-cursor-rules
    ```
 3. Claude will use the `mcp-installer` to install the server
 
@@ -73,7 +74,33 @@ If you need to manually configure Claude Desktop to use the MCP server:
      ]
    }
    ```
-3. Save the file and restart Claude Desktop
+3. If you have access to the private rules repository, add your GitHub token:
+   ```json
+   {
+     "mcps": [
+       {
+         "name": "Cursor Rules",
+         "url": "http://localhost:8000",
+         "auth": {
+           "github": {
+             "token": "YOUR_PERSONAL_ACCESS_TOKEN"
+           }
+         }
+       }
+     ]
+   }
+   ```
+4. Save the file and restart Claude Desktop
+
+## Getting Access to the Rules Repository
+
+To get full access to the rules:
+
+1. Contact the repository owner (MrZzE00) to be added as a collaborator
+2. Or, generate a personal access token with the `repo` scope on your GitHub account:
+   - Go to GitHub → Settings → Developer settings → Personal access tokens
+   - Generate a new token with `repo` scope
+   - Copy this token to your Claude Desktop configuration as shown above
 
 ## Using the MCP Server
 

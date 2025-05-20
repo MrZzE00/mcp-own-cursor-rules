@@ -2,6 +2,31 @@
 
 A Model Context Protocol (MCP) server that provides Claude Desktop with access to comprehensive code quality rules, best practices, and code examples from the Own Cursor Rules repository.
 
+## Important Note About Rules Access
+
+The MCP server is designed to access rules from the private repository `MrZzE00/own-cursor-rules`. For an end user to benefit from this MCP server, two options are available:
+
+1. **Using a token access (recommended)**: The user needs a personal access token for the private repository. Configure Claude Desktop with this token in the `auth` field:
+   ```json
+   {
+     "mcps": [
+       {
+         "name": "Cursor Rules",
+         "url": "https://raw.githubusercontent.com/MrZzE00/mcp-own-cursor-rules/main",
+         "auth": {
+           "github": {
+             "token": "YOUR_PERSONAL_ACCESS_TOKEN"
+           }
+         }
+       }
+     ]
+   }
+   ```
+
+2. **Access without token (limited functionality)**: Users without access to the private repo will only be able to use the MCP server's code and structure, but will not have access to the actual rules content.
+
+To grant users access to the private repo, you can add them as collaborators in the GitHub repository settings.
+
 ## Overview
 
 This MCP server enables Claude Desktop to access and apply a rich set of coding standards and best practices across multiple domains:
