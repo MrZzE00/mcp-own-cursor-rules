@@ -16,12 +16,10 @@ This guide explains how to host the MCP Own Cursor Rules server on GitHub, allow
 1. After creating the repository, follow the instructions on GitHub to push your existing repository:
 
 ```bash
-git remote add origin https://github.com/YOUR_USERNAME/mcp-own-cursor-rules.git
+git remote add origin https://github.com/MrZzE00/mcp-own-cursor-rules.git
 git branch -M main
 git push -u origin main
 ```
-
-Replace `YOUR_USERNAME` with your actual GitHub username.
 
 ## Step 3: Configure Claude Desktop
 
@@ -36,14 +34,13 @@ Replace `YOUR_USERNAME` with your actual GitHub username.
      "mcps": [
        {
          "name": "Cursor Rules",
-         "url": "https://raw.githubusercontent.com/YOUR_USERNAME/mcp-own-cursor-rules/main"
+         "url": "https://raw.githubusercontent.com/MrZzE00/mcp-own-cursor-rules/main"
        }
      ]
    }
    ```
 
-3. Replace `YOUR_USERNAME` with your actual GitHub username
-4. Save the file and restart Claude Desktop
+3. Save the file and restart Claude Desktop
 
 ## Updating the Server
 

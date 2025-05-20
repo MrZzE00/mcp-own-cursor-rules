@@ -38,13 +38,12 @@ You can use this MCP server directly from GitHub without local installation:
      "mcps": [
        {
          "name": "Cursor Rules",
-         "url": "https://raw.githubusercontent.com/YOUR_USERNAME/mcp-own-cursor-rules/main"
+         "url": "https://raw.githubusercontent.com/MrZzE00/mcp-own-cursor-rules/main"
        }
      ]
    }
    ```
-3. Replace `YOUR_USERNAME` with your actual GitHub username
-4. Save the file and restart Claude Desktop
+3. Save the file and restart Claude Desktop
 
 ### Option 2: Install Using Claude Desktop
 
