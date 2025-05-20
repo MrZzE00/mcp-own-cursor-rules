@@ -7,7 +7,7 @@ name = "mcp-own-cursor-rules"
 version = "0.1.0"
 description = "FastMCP server for Cursor Rules"
 authors = [
-    {name = "Your Name", email = "your.email@example.com"},
+    {name = "MCP Cursor Rules", email = "mcp-cursor-rules@example.com"},
 ]
 readme = "README.md"
 requires-python = ">=3.10"
